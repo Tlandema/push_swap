@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   freerror.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/17 09:41:10 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/10 20:26:36 by tlandema         ###   ########.fr       */
+/*   Created: 2019/06/10 21:50:16 by tlandema          #+#    #+#             */
+/*   Updated: 2019/06/11 00:25:23 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
-int		main(int argc, char **argv)
+t_pile	*ft_free_pile_ret_p(t_pile *to_f)
 {
-	t_env	*env;
-	int		ret;
+	if (to_f->next)
+		ft_free_pile_ret_p(to_f->next);
+	free(to_f);
+	return (NULL);
+}
 
-	if (!(env = ft_get_arg(argc, argv)))
-	{
-		ft_putendl_fd("Error", 2);
-		return (1);
-	}
-	if ((ret = ft_checker(env)) == 1)
-		ft_putendl("OK");
-	else if (ret == 0)
-		ft_putendl("KO");
-	else if (ret == -1)
-	{
-		ft_putendl_fd("Error", 2);
-		return (1);
-	}
-	ft_free_env(env);
-	return (0);
+t_env	*ft_free_env_ret_e(t_env *env)
+{
+	ft_free_pile_ret_p(env->pile_a);
+	free(env);
+	return (NULL);
 }

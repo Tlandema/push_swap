@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 18:05:42 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/10 05:52:34 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/11 00:24:31 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,12 @@ static int	ft_pile_size(t_pile *pile)
 	return (i);
 }
 
-static int	ft_check_duplicates(t_env *env)
+static int	ft_check_duplicates(t_env *env, int i)
 {
 	long int	*tab_i;
-	int			i;
 	int			j;
 	t_pile		*tmp;
 
-	i = -1;
 	tmp = env->pile_a;
 	if (((env->size = ft_pile_size(env->pile_a)) == 0)
 			|| !(tab_i = (long int *)ft_memalloc(sizeof(long int) * env->size)))
@@ -96,10 +94,10 @@ t_pile		*ft_arg_in_arg(char *str)
 	while (tab[i])
 	{
 		if (!(tmp = (t_pile *)ft_memalloc(sizeof(t_pile))))
-			return (NULL/*free ret*/);
+			return (ft_free_pile_ret_p(ret));
 		tmp->value = ft_atoli(tab[i]);
 		if (tmp->value > INT_MAX || tmp->value < INT_MIN)
-			return (NULL/*free ret*/);
+			return (ft_free_pile_ret_p(ret));
 		ft_pile_push(&ret, tmp);
 		tmp = NULL;
 		i++;
@@ -120,8 +118,8 @@ t_env		*ft_get_arg(int argc, char **argv)
 		return (NULL);
 	while (++i < argc)
 		ft_pile_push(&ret->pile_a, ft_arg_in_arg(argv[i]));
-	if (ft_check_duplicates(ret))
-		return (NULL/*free ret*/);
+	if (ft_check_duplicates(ret, -1))
+		return (ft_free_env_ret_e(ret));
 	ret->size_a = ret->size;
 	ret->size_b = 0;
 	return (ret);

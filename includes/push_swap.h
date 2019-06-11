@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 16:32:27 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/10 02:09:17 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/11 03:42:59 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,15 @@ void				ps_quicksort(t_env *env, int pile_size, int id);
 void				ft_stock_act(t_act **act, char *action);
 t_act				*ft_create_node(char *action);
 
+t_pile				*ft_free_pile_ret_p(t_pile *to_f);
+t_env				*ft_free_env_ret_e(t_env *env);
+void				ft_free_2_actions(t_act *act);
+
 void				ft_change_to_rr(t_act **act);
 void				ft_change_to_rrr(t_act **act);
 void				ft_change_to_ss(t_act **act);
 void				ft_show_stock(t_act *act);
-void				ft_change_stock(t_act **act);
+void				ft_change_stock(t_act **act, int i);
 void				ft_node_mover(t_act **act);
 
 void				ft_sort_3_a(t_env *env);

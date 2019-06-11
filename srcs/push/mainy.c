@@ -6,14 +6,14 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 20:09:22 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/10 07:15:37 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/11 03:42:57 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void		ft_act_rot(t_env *env, int rr, int id)
+void	ft_act_rot(t_env *env, int rr, int id)
 {
 	int c;
 
@@ -54,18 +54,21 @@ void	ft_swap_stuff(t_env *env, int id)
 	}
 }
 
-int			main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_env	*env;
 
-	if (argc < 3)
+	if (argc < 2)
 		return (0);
 	if ((env = ft_get_arg(argc, argv)) == NULL)
-		return (0); //ft_error("Error\n"*/0);
+	{
+		ft_putendl_fd("Error", 2);
+		return (1);
+	}
 	ps_quicksort(env, env->size, 0);
-	ft_change_stock(&env->act->right);
+	if (env->act && env->size > 3)
+		ft_change_stock(&env->act->right, 0);
 	ft_show_stock(env->act);
 	ft_free_env(env);
-	// FREE TOUT CHIEN DU DEMON
 	return (0);
 }

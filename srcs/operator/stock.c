@@ -6,15 +6,16 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 10:06:52 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/10 07:14:46 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/11 03:42:53 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
-t_act	*ft_create_node(char *action)
+t_act		*ft_create_node(char *action)
 {
-	t_act  *act;
+	t_act	*act;
 
 	act = (t_act *)ft_memalloc(sizeof(t_act));
 	act->left = NULL;
@@ -23,21 +24,18 @@ t_act	*ft_create_node(char *action)
 	return (act);
 }
 
-static void		ft_change_helper(t_act **act)
+static void	ft_change_helper(t_act **act)
 {
-	t_act *tmp;
+	t_act	*tmp;
 
 	tmp = *act;
-	//ft_change_to_ss(act);
-	//ft_change_to_rr(act);
-	//ft_change_to_rrr(act);
-}	
-#include <stdlib.h>
-void			ft_change_stock(t_act **act)
-{
-	int i;
+	ft_change_to_ss(act);
+	ft_change_to_rr(act);
+	ft_change_to_rrr(act);
+}
 
-	i = 0;
+void		ft_change_stock(t_act **act, int i)
+{
 	if ((*act) == NULL)
 		return ;
 	if ((ft_strequ((*act)->action, "pa\n")
@@ -57,21 +55,15 @@ void			ft_change_stock(t_act **act)
 		(*act)->left->left->right = (*act)->right;
 		(*act)->right->left = (*act)->left->left;
 	}
-	else 
+	else
 		ft_change_helper(act);
 	if ((*act)->right && (*act))
-		ft_change_stock(&(*act)->right);
+		ft_change_stock(&(*act)->right, 0);
 	if (i == 1)
-	{
-		free((*act)->left->action);
-		free((*act)->action);
-		free((*act)->left);
-		free(*act);
-	}
-
+		ft_free_2_actions(*act);
 }
 
-void			ft_show_stock(t_act *act)
+void		ft_show_stock(t_act *act)
 {
 	if (act != NULL)
 	{
@@ -84,7 +76,7 @@ void			ft_show_stock(t_act *act)
 	}
 }
 
-void			ft_stock_act(t_act **act, char *action)
+void		ft_stock_act(t_act **act, char *action)
 {
 	if (*act == NULL)
 	{
