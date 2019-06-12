@@ -6,12 +6,13 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 20:09:22 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/11 03:42:57 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/12 04:16:46 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+#include <limits.h>
 
 void	ft_act_rot(t_env *env, int rr, int id)
 {
@@ -54,16 +55,37 @@ void	ft_swap_stuff(t_env *env, int id)
 	}
 }
 
+static int	ft_is_sorted(t_pile *pile)
+{
+	int grind;
+
+	grind = INT_MIN;
+	while (pile)
+	{
+		if (pile->value < grind)
+			return (0);
+		else
+			grind = pile->value;
+		pile = pile->next;
+	}
+	return (1);
+}
+
 int		main(int argc, char **argv)
 {
 	t_env	*env;
 
 	if (argc < 2)
-		return (0);
+		return (1);
 	if ((env = ft_get_arg(argc, argv)) == NULL)
 	{
 		ft_putendl_fd("Error", 2);
 		return (1);
+	}
+	if (ft_is_sorted(env->pile_a))
+	{
+		ft_free_env(env);
+		return (0);
 	}
 	ps_quicksort(env, env->size, 0);
 	if (env->act && env->size > 3)

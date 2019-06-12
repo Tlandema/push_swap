@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 10:06:52 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/11 03:42:53 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/11 08:58:18 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ t_act		*ft_create_node(char *action)
 	return (act);
 }
 
-static void	ft_change_helper(t_act **act)
+static int	ft_change_helper(t_act **act)
 {
-	t_act	*tmp;
-
-	tmp = *act;
-	ft_change_to_ss(act);
-	ft_change_to_rr(act);
-	ft_change_to_rrr(act);
+	if (ft_change_to_ss(act))
+		return (1);
+	if (ft_change_to_rr(act))
+		return (1);
+	if (ft_change_to_rrr(act))
+		return (1);
+	return (0);
 }
 
 void		ft_change_stock(t_act **act, int i)
@@ -56,7 +57,7 @@ void		ft_change_stock(t_act **act, int i)
 		(*act)->right->left = (*act)->left->left;
 	}
 	else
-		ft_change_helper(act);
+		i = ft_change_helper(act);
 	if ((*act)->right && (*act))
 		ft_change_stock(&(*act)->right, 0);
 	if (i == 1)
@@ -71,8 +72,6 @@ void		ft_show_stock(t_act *act)
 			ft_putstr(act->action);
 		if (act->right)
 			ft_show_stock(act->right);
-		else
-			return ;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 18:05:42 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/11 00:24:31 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/12 08:05:03 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	ft_check_arg(int argc, char **argv)
 	{
 		j = 0;
 		to_check = argv[i];
+		if (!to_check || to_check[0] == '\0')
+			return (0);
 		while (to_check[j] != '\0')
 		{
 			if (!ft_isdigit(to_check[j]) && to_check[j] != '-'
@@ -97,7 +99,7 @@ t_pile		*ft_arg_in_arg(char *str)
 			return (ft_free_pile_ret_p(ret));
 		tmp->value = ft_atoli(tab[i]);
 		if (tmp->value > INT_MAX || tmp->value < INT_MIN)
-			return (ft_free_pile_ret_p(ret));
+			return (ft_tabdel_ret_p(ft_count_tab(tab), &tab, tmp));
 		ft_pile_push(&ret, tmp);
 		tmp = NULL;
 		i++;
@@ -109,6 +111,7 @@ t_pile		*ft_arg_in_arg(char *str)
 t_env		*ft_get_arg(int argc, char **argv)
 {
 	t_env	*ret;
+	t_pile	*tmp;
 	int		i;
 
 	if (!ft_check_arg(argc, argv))
@@ -117,7 +120,12 @@ t_env		*ft_get_arg(int argc, char **argv)
 	if (!(ret = (t_env *)ft_memalloc(sizeof(t_env))))
 		return (NULL);
 	while (++i < argc)
-		ft_pile_push(&ret->pile_a, ft_arg_in_arg(argv[i]));
+	{
+		if ((tmp = ft_arg_in_arg(argv[i])) == NULL)
+			return (ft_free_env_ret_e(ret));
+		ft_pile_push(&ret->pile_a, tmp);
+		tmp = NULL;
+	}
 	if (ft_check_duplicates(ret, -1))
 		return (ft_free_env_ret_e(ret));
 	ret->size_a = ret->size;

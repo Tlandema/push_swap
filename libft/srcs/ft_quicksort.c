@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 17:37:26 by tlandema          #+#    #+#             */
-/*   Updated: 2019/05/19 18:03:49 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/12 01:56:21 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	partition(int *tab, int low, int high)
 	int	i;
 	int	j;
 
-	pivot = tab[high]; //can be improved with median of three
+	pivot = tab[high];
 	i = (low - 1);
 	j = low;
 	while (j < high)

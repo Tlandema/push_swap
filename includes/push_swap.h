@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 16:32:27 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/11 03:42:59 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/12 06:44:32 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ t_act				*ft_create_node(char *action);
 
 t_pile				*ft_free_pile_ret_p(t_pile *to_f);
 t_env				*ft_free_env_ret_e(t_env *env);
+t_pile				*ft_tabdel_ret_p(int i, char ***tab, t_pile *to_f);
 void				ft_free_2_actions(t_act *act);
 
-void				ft_change_to_rr(t_act **act);
-void				ft_change_to_rrr(t_act **act);
-void				ft_change_to_ss(t_act **act);
+int					ft_change_to_rr(t_act **act);
+int					ft_change_to_rrr(t_act **act);
+int					ft_change_to_ss(t_act **act);
 void				ft_show_stock(t_act *act);
 void				ft_change_stock(t_act **act, int i);
 void				ft_node_mover(t_act **act);

@@ -6,7 +6,7 @@
 #    By: tlandema <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 12:04:00 by tlandema          #+#    #+#              #
-#    Updated: 2019/06/11 00:10:42 by tlandema         ###   ########.fr        #
+#    Updated: 2019/06/11 05:31:27 by tlandema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,6 @@ BOTH =	get_arg.c \
 		delete.c \
 		freerror.c \
 		pile_pusher.c \
-		ft_showpile.c \
 		stock_changer.c \
 		stock.c \
 		rra.c \

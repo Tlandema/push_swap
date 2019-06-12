@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 09:41:10 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/10 20:26:36 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/12 02:01:24 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		main(int argc, char **argv)
 	t_env	*env;
 	int		ret;
 
+	if (argc < 2)
+		return (1);
 	if (!(env = ft_get_arg(argc, argv)))
 	{
 		ft_putendl_fd("Error", 2);

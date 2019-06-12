@@ -6,15 +6,16 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 09:37:36 by tlandema          #+#    #+#             */
-/*   Updated: 2019/05/01 00:54:17 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/12 07:36:36 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "libft.h"
+#include <stdio.h>
 #include "get_next_line.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 static char	*reading(char **str, char *buff, int fd)
 {
@@ -57,8 +58,11 @@ static char	*a_line(char **str)
 	}
 	else if (!(line = ft_strdup(*str)))
 		return (NULL);
-	free(*str);
-	*str = NULL;
+	if (!(*str) || !truc)
+	{
+		free(*str);
+		*str = NULL;
+	}
 	return (line);
 }
 
