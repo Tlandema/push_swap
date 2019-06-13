@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 17:16:30 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/11 00:33:33 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/13 01:56:52 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,47 @@ long int	ft_create_threshold(t_pile *pile_a, int pile_size)
 	thresh = tab_i[(stock - 1) / 2];
 	free(tab_i);
 	return (thresh);
+}
+
+static void	ft_act_rot(t_env *env, int rr, int id)
+{
+	int	c;
+
+	c = id ? env->size_b : env->size_a;
+	if (rr > c / 2)
+	{
+		while (c - rr++)
+		{
+			if (id == 1)
+				ft_rotate_b(env, 1);
+			else
+				ft_rotate_a(env, 1);
+		}
+	}
+	else
+	{
+		while (rr--)
+		{
+			if (id == 1)
+				ft_rev_rotate_b(env, 1);
+			else
+				ft_rev_rotate_a(env, 1);
+		}
+	}
+}
+
+static void	ft_swap_stuff(t_env *env, int id)
+{
+	if (id == 0)
+	{
+		if (env->pile_a->value > env->pile_a->next->value)
+			ft_swap_a(env, 1);
+	}
+	else
+	{
+		if (env->pile_b->value < env->pile_b->next->value)
+			ft_swap_b(env, 1);
+	}
 }
 
 static int	ps_partition(t_env *env, int pile_size, int id, int *rot)

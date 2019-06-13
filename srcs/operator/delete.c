@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 16:06:24 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/11 01:10:51 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/13 02:10:35 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void		ft_free_env(t_env *env)
 		ft_free_actions(env->act);
 	if (env->pile_a)
 		ft_free_pile(env->pile_a);
+	if (env->pile_b)
+		ft_free_pile(env->pile_b);
 	if (env)
 		free(env);
 }

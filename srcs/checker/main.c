@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 09:41:10 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/12 02:01:24 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/13 02:10:33 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		main(int argc, char **argv)
 	else if (ret == -1)
 	{
 		ft_putendl_fd("Error", 2);
+		ft_free_env(env);
 		return (1);
 	}
 	ft_free_env(env);

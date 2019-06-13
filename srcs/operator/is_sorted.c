@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   freerror.c                                         :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 21:50:16 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/13 01:31:34 by tlandema         ###   ########.fr       */
+/*   Created: 2019/06/13 01:48:28 by tlandema          #+#    #+#             */
+/*   Updated: 2019/06/13 01:51:49 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
+#include <limits.h>
 
-t_pile	*ft_free_pile_ret_p(t_pile *to_f)
+int	ft_is_sorted(t_pile *pile)
 {
-	if (to_f->next)
-		ft_free_pile_ret_p(to_f->next);
-	if (to_f)
-		free(to_f);
-	return (NULL);
-}
+	int	grind;
 
-t_env	*ft_free_env_ret_e(t_env *env)
-{
-	if (env->pile_a)
-		ft_free_pile_ret_p(env->pile_a);
-	free(env);
-	return (NULL);
-}
-
-t_pile	*ft_tabdel_ret_p(int i, char ***tab, t_pile *to_f)
-{
-	ft_tabdel(i, tab);
-	free(to_f);
-	return (NULL);
+	grind = INT_MIN;
+	while (pile)
+	{
+		if (pile->value < grind)
+			return (0);
+		else
+			grind = pile->value;
+		pile = pile->next;
+	}
+	return (1);
 }

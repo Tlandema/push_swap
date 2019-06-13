@@ -6,13 +6,12 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 10:25:56 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/12 01:54:29 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/13 02:09:33 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "get_next_line.h"
-#include <limits.h>
 
 static int	ft_pile_helper(t_env *env, char *str)
 {
@@ -51,22 +50,6 @@ static int	ft_pile_mover(t_env *env, char *str)
 	else
 		i = ft_pile_helper(env, str);
 	return (i);
-}
-
-static int	ft_is_sorted(t_pile *pile)
-{
-	int	grind;
-
-	grind = INT_MIN;
-	while (pile)
-	{
-		if (pile->value < grind)
-			return (0);
-		else
-			grind = pile->value;
-		pile = pile->next;
-	}
-	return (1);
 }
 
 int			ft_checker(t_env *env)

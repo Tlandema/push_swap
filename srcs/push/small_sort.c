@@ -6,13 +6,13 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 16:41:56 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/11 00:34:04 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/13 02:52:03 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_is_sorted(int x, int y, int z)
+static int	ft_is_sort(int x, int y, int z)
 {
 	if (x < y && y < z)
 		return (1);
@@ -78,7 +78,7 @@ void		ft_sort_3_a(t_env *env)
 	x = env->pile_a->value;
 	y = env->pile_a->next->value;
 	z = env->pile_a->next->next->value;
-	if (!ft_is_sorted(x, y, z) && env->size_a != 3)
+	if (!ft_is_sort(x, y, z) && env->size_a != 3)
 		return (ft_sort_3_top_a(env));
 	if (x > y && y > z)
 	{
@@ -107,7 +107,7 @@ void		ft_sort_3_b(t_env *env)
 	x = env->pile_b->value;
 	y = env->pile_b->next->value;
 	z = env->pile_b->next->next->value;
-	if (!ft_is_sorted(z, y, x) && env->size_b != 3)
+	if (!ft_is_sort(z, y, x) && env->size_b != 3)
 		return (ft_sort_3_top_b(env));
 	if (x < y && y < z)
 	{

@@ -6,7 +6,7 @@
 #    By: tlandema <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 12:04:00 by tlandema          #+#    #+#              #
-#    Updated: 2019/06/11 05:31:27 by tlandema         ###   ########.fr        #
+#    Updated: 2019/06/13 05:23:13 by tlandema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,11 @@ D_CHECK_OBJS = $(addprefix $(OBJS_PATH)/, $(CHECK_OBJS))
 
 BOTH_PATH = srcs/operator
 
-BOTH =	get_arg.c \
-		delete.c \
+BOTH =	pile_pusher.c \
+		is_sorted.c \
 		freerror.c \
-		pile_pusher.c \
-		stock_changer.c \
+		get_arg.c \
+		delete.c \
 		stock.c \
 		rra.c \
 		rrb.c \

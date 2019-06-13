@@ -6,7 +6,7 @@
 /*   By: tlandema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 16:32:27 by tlandema          #+#    #+#             */
-/*   Updated: 2019/06/12 06:44:32 by tlandema         ###   ########.fr       */
+/*   Updated: 2019/06/13 05:22:47 by tlandema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,22 @@
 
 # include "libft.h"
 
+/*
+** PILE-> It is the structure holding the number passed as arg and that allow
+** me to do some operation inside of the stack.
+*/
+
 typedef struct		s_pile
 {
 	long int		value;
 	struct s_pile	*next;
 }					t_pile;
+
+/*
+** ACT-> It is the structure holding avery action made by push_swap so it's
+** possible for me to change those action as a way to get a smaller amount
+** of actions.
+*/
 
 typedef struct		s_act
 {
@@ -27,6 +38,11 @@ typedef struct		s_act
 	struct s_act	*left;
 	struct s_act	*right;
 }					t_act;
+
+/*
+** ENV-> The structure holding most of the informations for push_swap
+** and checker to be able to work.
+*/
 
 typedef struct		s_env
 {
@@ -38,27 +54,25 @@ typedef struct		s_env
 	t_act			*act;
 }					t_env;
 
-int					ft_fill_b(t_env *env, int pile_size, int *ra);
-int					ft_fill_a(t_env *env, int pile_size, int *rb);
-void				ft_pile_push(t_pile **alst, t_pile *new);
+long int			ft_create_threshold(t_pile *pile_a, int pile_size);
 t_env				*ft_get_arg(int argc, char **argv);
+t_act				*ft_create_node(char *action);
+void				ft_pile_push(t_pile **alst, t_pile *new);
+void				ps_quicksort(t_env *env, int pile_size, int id);
 void				ft_sort_a(t_env *env, int pile_size);
 void				ft_sort_b(t_env *env, int pile_size);
-long int			ft_create_threshold(t_pile *pile_a, int pile_size);
-void				ft_swap_stuff(t_env *env, int truc);
-void				ft_act_rot(t_env *env, int rr, int id);
-void				ps_quicksort(t_env *env, int pile_size, int id);
-void				ft_stock_act(t_act **act, char *action);
-t_act				*ft_create_node(char *action);
+int					ft_fill_a(t_env *env, int pile_size, int *rb);
+int					ft_fill_b(t_env *env, int pile_size, int *ra);
+
+int					ft_is_sorted(t_pile *pile);
 
 t_pile				*ft_free_pile_ret_p(t_pile *to_f);
-t_env				*ft_free_env_ret_e(t_env *env);
 t_pile				*ft_tabdel_ret_p(int i, char ***tab, t_pile *to_f);
+t_env				*ft_free_env_ret_e(t_env *env);
 void				ft_free_2_actions(t_act *act);
+void				ft_free_env(t_env *env);
 
-int					ft_change_to_rr(t_act **act);
-int					ft_change_to_rrr(t_act **act);
-int					ft_change_to_ss(t_act **act);
+void				ft_stock_act(t_act **act, char *action);
 void				ft_show_stock(t_act *act);
 void				ft_change_stock(t_act **act, int i);
 void				ft_node_mover(t_act **act);
@@ -66,7 +80,6 @@ void				ft_node_mover(t_act **act);
 void				ft_sort_3_a(t_env *env);
 void				ft_sort_3_b(t_env *env);
 
-void				ft_free_env(t_env *env);
 int					ft_checker(t_env *env);
 
 void				ft_swap_a(t_env *env, int ok);
